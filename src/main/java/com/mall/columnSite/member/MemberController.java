@@ -3,97 +3,78 @@ package com.mall.columnSite.member;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-@Slf4j
 @Controller
+@Slf4j
 public class MemberController {
-
     @Autowired
     MemberService memberService;
 
-    @RequestMapping(value = "/login")
-    public String login(HttpServletRequest request) throws Exception{
-        log.info("로그인 페이지");
+    @RequestMapping("/login")
+    public String login(HttpServletRequest request) {
         // 로그인 이전 페이지 정보 세션에 저장
         request.getSession().setAttribute("pageBeforeLogin", request.getHeader("Referer"));
         return "login";
     }
 
-    @RequestMapping(value = "/submitLogin", method = RequestMethod.POST)
-    public String submitLogin(MemberDTO member, HttpServletRequest request) throws Exception {
-        MemberDTO loginData = memberService.submitLogin(member);
-        if (loginData == null) // 비밀번호 틀리면 null값 들어옴
-            return alertMsgAndGoUrl(request, "로그인 오류! ID와 비밀번호를 확인해주세요~!!", "login");
-        HttpSession session = request.getSession();
-        session.setAttribute("member", loginData);
-        return "redirect:" + session.getAttribute("pageBeforeLogin");
-    }
-
-    @RequestMapping(value = "/loginForDemo")
-    public String loginForDemo(HttpServletRequest request) throws Exception {
-        request.getSession().setAttribute("pageBeforeLogin", request.getHeader("Referer"));
-        MemberDTO member = new MemberDTO();
-        member.setId("midori"); // midori는 시연용 일반계정입니다.
-        member.setPw("1111");
-        MemberDTO loginData = memberService.submitLogin(member);
-        HttpSession session = request.getSession();
-        session.setAttribute("member", loginData);
-        log.info("(시연용) 일반로그인 성공 : {}", loginData);
-        return "redirect:" + session.getAttribute("pageBeforeLogin");
-    }
-
-    @RequestMapping(value = "/loginForDemoAsAdmin")
-    public String loginForDemoAsAdmin(HttpServletRequest request) throws Exception {
-        request.getSession().setAttribute("pageBeforeLogin", request.getHeader("Referer"));
-        MemberDTO member = new MemberDTO();
-        member.setId("admin"); // midori는 시연용 관리자계정입니다.
-        member.setPw("1111");
-        MemberDTO loginData = memberService.submitLogin(member);
-        HttpSession session = request.getSession();
-        session.setAttribute("member", loginData);
-        log.info("(시연용) 관리자로그인 성공 : {}", loginData);
-        return "redirect:" + session.getAttribute("pageBeforeLogin");
-    }
-
-    // alert.jsp 연결문 정리
-    private String alertMsgAndGoUrl(HttpServletRequest request, String msg, String url) {
-        request.setAttribute("msg", msg);
-        request.setAttribute("url", url);
-        return "alert";
-    }
-
-    @RequestMapping(value = "/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "redirect:/";
-    }
-
-    @RequestMapping(value = "/signUp")
+    @RequestMapping("/signUp")
     public String signUp() {
         return "signUp";
     }
 
+    @RequestMapping("/isUniqueId")
+    @ResponseBody
+    public String isUniqueId(String id) throws Exception {
+        log.debug("(중복확인용)ID 입력 확인: {}", id);
+        return memberService.isUniqueId(id);
+    }
+
     @RequestMapping(value = "/submitSignUp", method = RequestMethod.POST)
-    public String submitSignUp(MemberDTO member, HttpServletRequest request) throws Exception {
-        memberService.submitSignUp(member);
-        loginWithSession(member, request); // 가입한 아이디로 로그인도 해주기
-        return alertMsgAndGoUrl(request, "회원가입되었습니다.", "home");
+    public String submitSignUp(MemberDTO memberDTO, HttpSession httpSession) throws Exception {
+        memberService.submitSignUp(memberDTO);
+        httpSession.setAttribute("member", memberService.checkLoginData(memberDTO)); // 로그인도 해줌
+        log.debug("회원가입 확인: {}", memberDTO);
+        return "redirect:/";
     }
 
-    private void loginWithSession(MemberDTO member, HttpServletRequest request) throws Exception {
-        MemberDTO loginData = memberService.submitLogin(member);
-        HttpSession session = request.getSession();
-        session.setAttribute("member", loginData);
+    @RequestMapping(value = "/submitLogin", method = RequestMethod.POST)
+    public String submitLogin(HttpSession session, MemberDTO memberDTO) throws Exception {  
+        session.setAttribute("member", memberService.checkLoginData(memberDTO));
+        log.debug("로그인 확인: {}", memberDTO);
+        return "redirect:" + session.getAttribute("pageBeforeLogin");
     }
 
-    @GetMapping(value = "/myPage")
+    @RequestMapping(value = "/logout")
+    public String logout(HttpSession httpSession) {
+        httpSession.invalidate();
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/myPage")
     public String myPage() {
         return "myPage";
+    }
+
+    @RequestMapping(value = "/modifyMyInfo")
+    public String modifyMyInfo() {
+        return "modifyMyInfo";
+    }
+
+    @RequestMapping(value = "/submitModifyMyInfo", method = RequestMethod.POST)
+    public String submitModifyMyInfo(MemberDTO member, HttpSession session) throws Exception {
+        memberService.submitModifyMyInfo(member);       
+        session.setAttribute("member", memberService.checkLoginData(member)); // 재로그인해서 회원정보갱신
+        return "myPage";
+    }
+
+    @RequestMapping(value = "/modifyMember")
+    public String modifyMember() {
+        return "modifyMember";
     }
 }

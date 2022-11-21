@@ -5,18 +5,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService {
 
     @Autowired
     MemberMapper memberMapper;
 
     @Override
-    public MemberDTO submitLogin(MemberDTO member) throws Exception {
-        return memberMapper.submitLogin(member);
+    public String isUniqueId(String id) throws Exception {
+        return memberMapper.isUniqueId(id);
     }
 
     @Override
-    public void submitSignUp(MemberDTO member) throws Exception {
-        memberMapper.submitSignUp(member);
+    public void submitSignUp(MemberDTO memberDTO) throws Exception {
+        memberMapper.submitSignUp(memberDTO);
+    }
+
+    @Override
+    public MemberDTO checkLoginData(MemberDTO memberDTO) throws Exception {
+        return memberMapper.checkLoginData(memberDTO);
+    }
+
+    @Override
+    public void submitModifyMyInfo(MemberDTO member) throws Exception {
+        memberMapper.submitModifyMyInfo(member);
     }
 }

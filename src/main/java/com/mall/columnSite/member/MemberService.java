@@ -1,8 +1,11 @@
 package com.mall.columnSite.member;
 
 public interface MemberService {
+    String isUniqueId(String id) throws Exception;
 
-    MemberDTO submitLogin(MemberDTO member) throws Exception;
+    void submitSignUp(MemberDTO memberDTO) throws Exception;
 
-    void submitSignUp(MemberDTO member) throws Exception;
+    MemberDTO checkLoginData(MemberDTO memberDTO) throws Exception;
+
+    void submitModifyMyInfo(MemberDTO member) throws Exception;
 }

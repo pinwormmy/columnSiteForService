@@ -2,15 +2,14 @@ package com.mall.columnSite.member;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class MemberDTO {
-
     private String id;
     private String pw;
-    private String name;
-    private String phone;
-    private String address;
+    private String nickName;
     private String email;
-    private int lv;
-
+    private Date regDate;
+    private int memberLevel;
 }
