@@ -319,7 +319,7 @@
         }
     }
 
-    //쿠키 불러오기
+    //쿠키 불러오기(무엇에 대한 쿠키인지 작성하기)
     function getCookie(name) {
         // alert("js test 쿠키몬스터");
         var obj = name + "=";
