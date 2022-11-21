@@ -1,8 +1,8 @@
-package com.mall.petshop.product;
+package com.mall.columnSite.product;
 
-import com.mall.petshop.mapper.ProductMapper;
-import com.mall.petshop.util.PageDTO;
-import com.mall.petshop.util.PageService;
+import com.mall.columnSite.mapper.ProductMapper;
+import com.mall.columnSite.util.PageDTO;
+import com.mall.columnSite.util.PageService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

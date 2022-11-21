@@ -1,6 +1,6 @@
-package com.mall.petshop.product;
+package com.mall.columnSite.product;
 
-import com.mall.petshop.util.PageDTO;
+import com.mall.columnSite.util.PageDTO;
 
 import java.util.List;
 

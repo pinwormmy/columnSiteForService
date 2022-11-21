@@ -1,16 +1,12 @@
-package com.mall.petshop;
+package com.mall.columnSite;
 
-import com.mall.petshop.product.LikeItDTO;
-import com.mall.petshop.product.ProductDTO;
-import com.mall.petshop.product.ProductService;
-import com.mall.petshop.util.PageDTO;
+import com.mall.columnSite.product.ProductService;
+import com.mall.columnSite.util.PageDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
 
 @Slf4j
 @Controller

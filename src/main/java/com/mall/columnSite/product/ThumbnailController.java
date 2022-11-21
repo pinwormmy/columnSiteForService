@@ -1,18 +1,15 @@
-package com.mall.petshop.product;
+package com.mall.columnSite.product;
 
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.UUID;
 
-import javax.annotation.Resource;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 
 import net.coobird.thumbnailator.Thumbnails;
-import net.coobird.thumbnailator.name.Rename;
 
 // 근데 이걸 컨트롤러 두는게 맞냐? 리팩토링할때 정리좀해라
 

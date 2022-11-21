@@ -1,6 +1,6 @@
-package com.mall.petshop.mapper;
+package com.mall.columnSite.mapper;
 
-import com.mall.petshop.member.MemberDTO;
+import com.mall.columnSite.member.MemberDTO;
 
 public interface MemberMapper {
 	

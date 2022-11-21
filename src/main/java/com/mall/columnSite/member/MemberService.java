@@ -1,4 +1,4 @@
-package com.mall.petshop.member;
+package com.mall.columnSite.member;
 
 public interface MemberService {
 

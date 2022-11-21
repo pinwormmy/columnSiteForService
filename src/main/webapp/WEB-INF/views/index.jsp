@@ -339,13 +339,6 @@
         return "";
     }
 
-    $(function(){
-        console.log(getCookie("popup"));
-        if(getCookie("popup1") !="Y"){
-            window.open("/popup", "event", "width=500, height=525");
-        }
-    });
-
     function addCart(productNum) {
         if(${member == null}) {
             alert("로그인이 필요합니다.");

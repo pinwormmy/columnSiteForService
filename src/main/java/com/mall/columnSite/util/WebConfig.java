@@ -1,4 +1,4 @@
-package com.mall.petshop.util;
+package com.mall.columnSite.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

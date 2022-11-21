@@ -3,9 +3,9 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mall.petshop.mapper.MemberMapper">
+<mapper namespace="com.mall.columnSite.mapper.MemberMapper">
 
-	<select id="submitLogin" resultType="com.mall.petshop.member.MemberDTO">
+	<select id="submitLogin" resultType="com.mall.columnSite.member.MemberDTO">
 		SELECT *
 			FROM MEMBER
 			WHERE ID=#{id} and PW=#{pw}

@@ -1,6 +1,6 @@
-package com.mall.petshop.member;
+package com.mall.columnSite.member;
 
-import com.mall.petshop.mapper.MemberMapper;
+import com.mall.columnSite.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

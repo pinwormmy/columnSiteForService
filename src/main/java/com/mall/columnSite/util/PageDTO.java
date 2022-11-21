@@ -1,4 +1,4 @@
-package com.mall.petshop.util;
+package com.mall.columnSite.util;
 
 import lombok.Data;
 

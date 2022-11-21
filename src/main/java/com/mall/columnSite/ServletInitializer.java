@@ -1,4 +1,4 @@
-package com.mall.petshop;
+package com.mall.columnSite;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -7,7 +7,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(PetshopApplication.class);
+		return application.sources(ColumnSiteApplication.class);
 	}
 
 }

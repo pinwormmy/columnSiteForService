@@ -3,16 +3,16 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mall.petshop.mapper.ProductMapper">
+<mapper namespace="com.mall.columnSite.mapper.ProductMapper">
 
-	<resultMap type="com.mall.petshop.product.ProductDTO" id="productDTO">
+	<resultMap type="com.mall.columnSite.product.ProductDTO" id="productDTO">
 		<result column="PRODUCT_NUM" property="productNum" />
 		<result column="NAME" property="name" />
 		<result column="PRICE" property="price" />
 		<result column="THUMBNAIL" property="thumbnail" />
 	</resultMap>
 
-	<resultMap type="com.mall.petshop.product.CartDTO" id="cartDTO">
+	<resultMap type="com.mall.columnSite.product.CartDTO" id="cartDTO">
 		<result column="CART_NUM" property="cartNum" />
 		<result column="PRODUCT_NUM" property="productNum" />
 		<result column="QUANTITY" property="quantity" />
@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<collection property="productDTO" resultMap="productDTO" />
 	</resultMap>
 
-	<resultMap type="com.mall.petshop.product.LikeItDTO" id="likeIt">
+	<resultMap type="com.mall.columnSite.product.LikeItDTO" id="likeIt">
 		<result column="PRODUCT_NUM" property="productNum" />
 		<result column="ID" property="id" />
 		<collection property="productDTO" resultMap="productDTO" />
@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE ID=#{id} and PW=#{pw}
 	</select>
 
-	<select id="showProductList" resultType="com.mall.petshop.product.ProductDTO">
+	<select id="showProductList" resultType="com.mall.columnSite.product.ProductDTO">
 		SELECT PRODUCT_NUM, SEARCH_TAG, NAME, PRICE, THUMBNAIL, FREE_SHIPPING,
 				ON_DISCOUNT, REG_DATE, CONTENT, REVIEW_COUNT
 			FROM PRODUCT
@@ -80,7 +80,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE <include refid="searchKeyword" />
 	</select>
 
-	<select id="readProduct" resultType="com.mall.petshop.product.ProductDTO">
+	<select id="readProduct" resultType="com.mall.columnSite.product.ProductDTO">
 		SELECT * FROM PRODUCT
 			WHERE PRODUCT_NUM=#{productNum}
 	</select>
@@ -101,7 +101,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE ID=#{id} AND PRODUCT_NUM=#{productNum}
 	</select>
 
-	<select id="loadLikeList" resultType="com.mall.petshop.product.LikeItDTO">
+	<select id="loadLikeList" resultType="com.mall.columnSite.product.LikeItDTO">
 		SELECT PRODUCT_NUM FROM LIKEIT
 			WHERE ID=#{id}
 	</select>
@@ -127,7 +127,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			VALUES(#{id}, now(), #{content}, #{productNum})
 	</insert>
 
-	<select id="showReviewList" resultType="com.mall.petshop.product.ReviewDTO">
+	<select id="showReviewList" resultType="com.mall.columnSite.product.ReviewDTO">
 		SELECT PRODUCT_NUM, review_NUM, ID, REG_DATE, CONTENT
 			FROM REVIEW
 			WHERE PRODUCT_NUM=#{productNum}
@@ -153,7 +153,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			VALUES(#{productNum}, #{quantity}, #{id}, now(), #{totalPrice}, 0)
 	</insert>
 
-	<select id="readOrder" resultType="com.mall.petshop.product.ProductOrderDTO">
+	<select id="readOrder" resultType="com.mall.columnSite.product.ProductOrderDTO">
 		SELECT *
 			FROM (SELECT * FROM PRODUCT_ORDER
 				WHERE ID=#{id} AND PRODUCT_NUM=#{productNum} AND STATUS=0

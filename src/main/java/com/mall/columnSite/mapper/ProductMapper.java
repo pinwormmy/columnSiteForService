@@ -1,8 +1,7 @@
-package com.mall.petshop.mapper;
+package com.mall.columnSite.mapper;
 
-import com.mall.petshop.member.MemberDTO;
-import com.mall.petshop.product.*;
-import com.mall.petshop.util.PageDTO;
+import com.mall.columnSite.product.*;
+import com.mall.columnSite.util.PageDTO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

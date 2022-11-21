@@ -1,4 +1,4 @@
-package com.mall.petshop.product;
+package com.mall.columnSite.product;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
