@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>P E T M A L L</title>
+<title>S L C</title>
 <style>
 .page-navigation {
     text-align: center;
